@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Süper Lig Futbolcuları</title>
+    <style>
+        body {
+            background-color: #1a1a1a;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"], select {
+            width: 80%;
+            max-width: 600px;
+            margin: 10px auto;
+            display: block;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #444;
+            background-color: #333;
+            color: white;
+        }
+
+        table {
+            width: 100%;
+            max-width: 800px;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #333;
+        }
+
+        a {
+            text-decoration: none;
+            color: #ffcc00;
+        }
+
+        a:hover {
+            color: #fff;
+        }
+
+        .sort-button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #ffcc00;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            color: #1a1a1a;
+            font-weight: bold;
+        }
+    </style>
+    <script>
+  const players = [
+    { name: 'Mauro Icardi', team: 'Galatasaray', position: 'Forvet', value: 15 },
+    { name: 'Victor Osimhen', team: 'Galatasaray', position: 'Santrafor', value: 75 },
+    { name: 'Edin Džeko', team: 'Fenerbahçe', position: 'Forvet', value: 8 },
+    { name: 'Irfan Can Kahveci', team: 'Fenerbahçe', position: 'Orta Saha', value: 6 },
+    { name: 'Cenk Tosun', team: 'Fenerbahçe', position: 'Forvet', value: 5 },
+    { name: 'Enner Valencia', team: 'Fenerbahçe', position: 'Forvet', value: 9 },
+    { name: 'Fernando Muslera', team: 'Galatasaray', position: 'Kaleci', value: 1.10 },
+    { name: 'Günay Güvenç', team: 'Galatasaray', position: 'Kaleci', value: 0.55 },
+    { name: 'Batuhan Şen', team: 'Galatasaray', position: 'Kaleci', value: 0.375 },
+    { name: 'Atakan Ordu', team: 'Galatasaray', position: 'Kaleci', value: 0.05 },
+    { name: 'Davinson Sánchez', team: 'Galatasaray', position: 'Stoper', value: 18.00 },
+    { name: 'Victor Nelsson', team: 'Galatasaray', position: 'Stoper', value: 16.00 },
+    { name: 'Abdülkerim Bardakcı', team: 'Galatasaray', position: 'Stoper', value: 7.50 },
+    { name: 'Metehan Baltacı', team: 'Galatasaray', position: 'Stoper', value: 1.60 },
+    { name: 'Ali Yeşilyurt', team: 'Galatasaray', position: 'Stoper', value: 0.075 },
+    { name: 'Ismail Jakobs', team: 'Galatasaray', position: 'Bek', value: 8.00 },
+    { name: 'Elias Jelert', team: 'Galatasaray', position: 'Bek', value: 8.00 },
+    { name: 'Kaan Ayhan', team: 'Galatasaray', position: 'Bek', value: 4.80 },
+    { name: 'Lucas Torreira', team: 'Galatasaray', position: 'Ön Libero', value: 15.00 },
+    { name: 'Efe Akman', team: 'Galatasaray', position: 'Ön Libero', value: 0.60 },
+    { name: 'Gabriel Sara', team: 'Galatasaray', position: 'Merkez Orta Saha', value: 20.00 },
+    { name: 'Kerem Demirbay', team: 'Galatasaray', position: 'Merkez Orta Saha', value: 4.40 },
+    { name: 'Berkan Kutlu', team: 'Galatasaray', position: 'Merkez Orta Saha', value: 3.80 },
+    { name: 'Eyüp Aydın', team: 'Galatasaray', position: 'Merkez Orta Saha', value: 1.10 },
+    { name: 'Gökdeniz Gürpüz', team: 'Galatasaray', position: 'Merkez Orta Saha', value: 0.30 },
+    { name: 'Barış Alper Yılmaz', team: 'Galatasaray', position: 'Sağ Kanat', value: 21.00 },
+    { name: 'Roland Sallai', team: 'Galatasaray', position: 'Sağ Kanat', value: 14.00 },
+    { name: 'Hakim Ziyech', team: 'Galatasaray', position: 'Sağ Kanat', value: 7.00 },
+    { name: 'Yunus Akgün', team: 'Galatasaray', position: 'Sağ Kanat', value: 6.50 },
+    { name: 'Yusuf Demir', team: 'Galatasaray', position: 'Sağ Kanat', value: 2.50 },
+    { name: 'Dries Mertens', team: 'Galatasaray', position: 'Forvet Arkası', value: 1.80 },
+    { name: 'Michy Batshuayi', team: 'Galatasaray', position: 'Santrafor', value: 8.00 },
+
+    // Beşiktaşlı oyuncular
+    { name: 'Ersin Destanoğlu', team: 'Beşiktaş', position: 'Kaleci', value: 2.00 },
+    { name: 'Mert Günok', team: 'Beşiktaş', position: 'Kaleci', value: 1.20 },
+    { name: 'Emir Yaşar', team: 'Beşiktaş', position: 'Kaleci', value: 0.175 },
+    { name: 'Göktuğ Baytekin', team: 'Beşiktaş', position: 'Kaleci', value: 0.050 },
+    { name: 'Felix Uduokhai', team: 'Beşiktaş', position: 'Stoper', value: 8.50 },
+    { name: 'Emirhan Topçu', team: 'Beşiktaş', position: 'Stoper', value: 5.00 },
+    { name: 'Tayyip Talha Sanuç', team: 'Beşiktaş', position: 'Stoper', value: 2.80 },
+    { name: 'Gabriel Paulista', team: 'Beşiktaş', position: 'Stoper', value: 2.00 },
+    { name: 'Necip Uysal', team: 'Beşiktaş', position: 'Stoper', value: 0.650 },
+    { name: 'Arthur Masuaku', team: 'Beşiktaş', position: 'Sol Bek', value: 4.00 },
+    { name: 'Emrecan Terzi', team: 'Beşiktaş', position: 'Sol Bek', value: 0.300 },
+    { name: 'Jonas Svensson', team: 'Beşiktaş', position: 'Sağ Bek', value: 1.80 },
+    { name: 'Onur Bulut', team: 'Beşiktaş', position: 'Sağ Bek', value: 1.70 },
+    { name: 'Arda Berk Özüarap', team: 'Beşiktaş', position: 'Sağ Bek', value: 0.000 },
+    { name: 'Moatasem Al-Musrati', team: 'Beşiktaş', position: 'Ön Libero', value: 13.00 },
+    { name: 'Jean Onana', team: 'Beşiktaş', position: 'Ön Libero', value: 3.70 },
+    { name: 'Gedson Fernandes', team: 'Beşiktaş', position: 'Merkez Orta Saha', value: 17.00 },
+    { name: 'Cher Ndour', team: 'Beşiktaş', position: 'Merkez Orta Saha', value: 4.00 },
+    { name: 'João Mário', team: 'Beşiktaş', position: 'Merkez Orta Saha', value: 3.80 },
+    { name: 'Salih Uçan', team: 'Beşiktaş', position: 'Merkez Orta Saha', value: 3.60 },
+    { name: 'Alex Oxlade-Chamberlain', team: 'Beşiktaş', position: 'Merkez Orta Saha', value: 3.00 },
+    { name: 'Fahri Ay', team: 'Beşiktaş', position: 'Merkez Orta Saha', value: 0.125 },
+    { name: 'Bakhtiyor Zaynutdinov', team: 'Beşiktaş', position: 'On Numara', value: 4.00 },
+    { name: 'Semih Kılıçsoy', team: 'Beşiktaş', position: 'Sol Kanat', value: 15.00 },
+    { name: 'Ernest Muci', team: 'Beşiktaş', position: 'Sol Kanat', value: 12.00 },
+    { name: 'Arda Kılıç', team: 'Beşiktaş', position: 'Sol Kanat', value: 0.075 },
+    { name: 'Milot Rashica', team: 'Beşiktaş', position: 'Sağ Kanat', value: 8.00 },
+    { name: 'Can Keleş', team: 'Beşiktaş', position: 'Sağ Kanat', value: 2.20 },
+    { name: 'Rafa', team: 'Beşiktaş', position: 'Forvet Arkası', value: 14.00 },
+    { name: 'Ciro Immobile', team: 'Beşiktaş', position: 'Santrafor', value: 3.00 },
+    { name: 'Michele Muro', team: 'Beşiktaş', position: 'Santrafor', value: 4.00 },
+    { name: 'Eray Şamdan', team: 'Beşiktaş', position: 'Santrafor', value: 0.125 }
+];
+
+function renderTable(filteredPlayers) {
+    const tableBody = document.querySelector('tbody');
+    tableBody.innerHTML = '';
+
+    (filteredPlayers || players).forEach(player => {
+        const teamName = player.team.toLowerCase().replace(' ', '_'); // Takım ismini uygun formatta al
+        const playerLink = `${teamName}/${player.name.toLowerCase().replace(' ', '_')}.html`; // Takım ve oyuncu bağlantısını oluştur
+        const teamLink = `${teamName}/${teamName}.html`; // Takım bağlantısını oluştur
+
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td><a href="${playerLink}">${player.name}</a></td>
+            <td><a href="${teamLink}">${player.team}</a></td>
+            <td>${player.position}</td>
+            <td>€${player.value}M</td>
+        `;
+        tableBody.appendChild(row);
+    });
+}
+
+
+
+
+        function sortByValue() {
+            players.sort((a, b) => b.value - a.value);
+            renderTable();
+        }
+
+        function searchPlayer() {
+            const input = document.getElementById('search').value.toLowerCase();
+            const rows = document.querySelectorAll('tbody tr');
+
+            rows.forEach(row => {
+                const name = row.querySelector('td').innerText.toLowerCase();
+                row.style.display = name.includes(input) ? '' : 'none';
+            });
+        }
+
+        function filterByTeam() {
+            const selectedTeam = document.getElementById('team-filter').value;
+            const filteredPlayers = selectedTeam === 'all' ? players : players.filter(player => player.team === selectedTeam);
+            renderTable(filteredPlayers);
+        }
+
+        function filterByPosition() {
+            const selectedPosition = document.getElementById('position-filter').value;
+            const filteredPlayers = selectedPosition === 'all' ? players : players.filter(player => player.position === selectedPosition);
+            renderTable(filteredPlayers);
+        }
+
+        window.onload = () => {
+            renderTable();
+        };
+    </script>
+</head>
+<body>
+    <h1>Süper Lig Futbolcuları</h1>
+    <input type="text" id="search" onkeyup="searchPlayer()" placeholder="Futbolcu ara...">
+    <select id="team-filter" onchange="filterByTeam()">
+        <option value="all">Tüm Takımlar</option>
+        <option value="ADANA DEMİRSPOR">Adana Demirspor</option>
+        <option value="ANTALYASPOR">Antalyaspor</option>
+        <option value="ATAKAŞ HATAYSPOR">Atakaş Hatayspor</option>
+        <option value="BELLONA KAYSERİSPOR">Bellona Kayserispor</option>
+        <option value="BEŞİKTAŞ">Beşiktaş</option>
+        <option value="CORENDON ALANYASPOR">Corendon Alanyaspor</option>
+        <option value="ÇAYKUR RİZESPOR">Çaykur Rizespor</option>
+        <option value="Fenerbahçe">Fenerbahçe</option>
+        <option value="Galatasaray">Galatasaray</option>
+        <option value="GAZİANTEP FUTBOL KULÜBÜ">Gaziantep Futbol Kulübü</option>
+        <option value="GÖZTEPE">Göztepe</option>
+        <option value="İKAS EYÜPSPOR">İkas Eyüpspor</option>
+        <option value="KASIMPAŞA">Kasımpaşa</option>
+        <option value="NET GLOBAL SİVASSPOR">Net Global Sivasspor</option>
+        <option value="RAMS BAŞAKŞEHİR">Rams Başakşehir</option>
+        <option value="SAMSUNSPOR">Samsunspor</option>
+        <option value="SİPAY BODRUM">Sipay Bodrum</option>
+        <option value="TRABZONSPOR">Trabzonspor</option>
+        <option value="TÜMOSAN KONYASPOR">Tümosan Konyaspor</option>
+    </select>
+    
+    <select id="position-filter" onchange="filterByPosition()">
+        <option value="all">Tüm Mevkiler</option>
+        <option value="Forvet">Forvet</option>
+        <option value="Kanat">Kanat</option>
+        <option value="Orta Saha">Orta Saha</option>
+        <!-- Diğer mevkiler burada eklenebilir -->
+    </select>
+
+    <button class="sort-button" onclick="sortByValue()">Değere Göre Sırala</button>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Futbolcu</th>
+                <th>Takım</th>
+                <th>Mevki</th>
+                <th>Piyasa Değeri</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Oyuncular buraya eklenecek -->
+        </tbody>
+    </table>
+</body>
+</html>
+
+
