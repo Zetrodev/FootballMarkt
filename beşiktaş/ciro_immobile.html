@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ciro Immobile - Detaylar</title>
+    <style>
+        body {
+            background-color: #1a1a1a;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .details {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #333;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .back-link {
+            display: block;
+            margin-top: 20px;
+            text-align: center;
+            color: #ffcc00;
+            text-decoration: none;
+        }
+
+        .value {
+            display: flex;
+            align-items: center;
+        }
+
+        .arrow-up {
+            color: green;
+            margin-left: 10px;
+        }
+
+        .arrow-down {
+            color: red;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Ciro Immobile</h1>
+    <div class="details">
+        <p><strong>Yaş:</strong> 34</p>
+        <p><strong>Ülke:</strong> İtalya</p>
+        <p><strong>Pozisyon:</strong> Santrafor</p>
+        <p><strong>Ayak:</strong> Sağ</p>
+        <p><strong>Güncel Takım:</strong> Beşiktaş</p>
+        <p><strong>Geçmiş Takımlar:</strong> Lazio, Torino, Sevilla, Borussia Dortmund</p>
+        <p class="value"><strong>Değeri:</strong> €<span id="value">3.80</span>M <span id="value-arrow"></span></p>
+    </div>
+    <a href="index.html" class="back-link">← Oyuncu Listesine Dön</a>
+
+    <script>
+        // İlk değeri tanımla
+        let previousValue = 3.80; // Eski değeri buraya girin
+        const valueElement = document.getElementById('value');
+        const valueArrow = document.getElementById('value-arrow');
+
+        // Değeri otomatik olarak güncelleyen fonksiyon
+        function updateValue(newValue) {
+            const currentValue = parseFloat(newValue);
+            valueElement.textContent = currentValue;
+
+            // Değer değişikliğine göre oku güncelle
+            if (currentValue > previousValue) {
+                valueArrow.innerHTML = '↑';
+                valueArrow.className = 'arrow-up';
+            } else if (currentValue < previousValue) {
+                valueArrow.innerHTML = '↓';
+                valueArrow.className = 'arrow-down';
+            } else {
+                valueArrow.innerHTML = ''; // Değişiklik yoksa ok gösterme
+            }
+
+            // Önceki değeri güncelle
+            previousValue = currentValue;
+        }
+
+        // Burada değeri değiştirdiğinizde ok işareti otomatik güncellenir
+        updateValue(8.50); // Yeni değeri buraya girin
+    </script>
+</body>
+</html>

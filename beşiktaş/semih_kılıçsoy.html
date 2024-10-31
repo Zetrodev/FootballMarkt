@@ -26,19 +26,28 @@
             border-radius: 10px;
         }
 
+        .value {
+            font-size: 18px;
+        }
+
         .back-link {
             display: block;
             margin-top: 20px;
             text-align: center;
+            color: #ffcc00;
+            text-decoration: none;
         }
 
-        ul {
-            list-style: none;
-            padding: 0;
+        .back-link:hover {
+            color: #fff;
         }
 
-        ul li {
-            margin: 5px 0;
+        .indicator-up {
+            color: #00ff00; /* Green for increase */
+        }
+
+        .indicator-down {
+            color: #ff0000; /* Red for decrease */
         }
     </style>
 </head>
@@ -51,7 +60,7 @@
         <p><strong>Ayak:</strong> Sol</p>
         <p><strong>Güncel Takım:</strong> Beşiktaş A.Ş.</p>
         <p><strong>Geçmiş Takımlar:</strong> Altay, İstanbul Başakşehir</p>
-        <p><strong>Değeri:</strong> €15M</p>
+        <p class="value"><strong>Değeri:</strong> €<span id="player-value">17.5</span>M <span id="value-indicator"></span></p>
 
         <h3>Kazandığı Kupalar:</h3>
         <ul>
@@ -60,5 +69,38 @@
         </ul>
     </div>
     <a href="C:\Users\Windows10\Desktop\site\index.html" class="back-link">← Ana Sayfaya Dön</a>
+
+    <script>
+        // Initial value (change this value as needed)
+        let currentValue = 15.0;
+
+        function updateValue(newValue) {
+            const valueElement = document.getElementById("player-value");
+            const indicatorElement = document.getElementById("value-indicator");
+
+            // Determine if the value has increased or decreased
+            if (newValue > currentValue) {
+                indicatorElement.textContent = "↑"; // Up arrow
+                indicatorElement.className = "indicator-up"; // Green color
+            } else if (newValue < currentValue) {
+                indicatorElement.textContent = "↓"; // Down arrow
+                indicatorElement.className = "indicator-down"; // Red color
+            } else {
+                indicatorElement.textContent = ""; // No change
+            }
+
+            // Update displayed value
+            valueElement.textContent = newValue.toFixed(2);
+
+            // Set currentValue to the new value
+            currentValue = newValue;
+        }
+
+        // Example usage
+        // You can call updateValue with different values to test the effect
+        updateValue(17.5); // Decrease example
+    </script>
 </body>
 </html>
+
+

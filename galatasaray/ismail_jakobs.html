@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ismail Jakobs - Detaylar</title>
+    <title>İsmail Jakobs - Detaylar</title>
     <style>
         body {
             background-color: #1a1a1a;
@@ -26,39 +26,91 @@
             border-radius: 10px;
         }
 
+        .value {
+            font-size: 18px;
+        }
+
         .back-link {
             display: block;
             margin-top: 20px;
             text-align: center;
+            color: #ffcc00;
+            text-decoration: none;
         }
 
-        ul {
-            list-style: none;
-            padding: 0;
+        .back-link:hover {
+            color: #fff;
         }
 
-        ul li {
+        .indicator-up {
+            color: #00ff00; /* Yeşil artış için */
+        }
+
+        .indicator-down {
+            color: #ff0000; /* Kırmızı azalış için */
+        }
+        .achievements {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #444;
+            border-radius: 8px;
+        }
+
+        .achievement-item {
             margin: 5px 0;
         }
     </style>
 </head>
 <body>
-    <h1>Ismail Jakobs</h1>
+    <h1>İsmail Jakobs</h1>
     <div class="details">
-        <p><strong>Yaş:</strong> 24</p>
-        <p><strong>Ülke:</strong> Almanya</p>
-        <p><strong>Pozisyon:</strong> Sol Bek</p>
-        <p><strong>Ayak:</strong> Sol</p>
-        <p><strong>Güncel Takım:</strong> Galatasaray A.Ş.</p>
-        <p><strong>Geçmiş Takımlar:</strong> AS Monaco</p>
-        <p><strong>Değeri:</strong> €8M</p>
+        <p><strong>Yaş:</strong> 25</p>
+        <p><strong>Ülke:</strong> Türkiye</p>
+        <p><strong>Pozisyon:</strong> Orta Saha</p>
+        <p><strong>Ayak:</strong> Sağ</p>
+        <p><strong>Güncel Takım:</strong> Fenerbahçe A.Ş.</p>
+        <p><strong>Geçmiş Takımlar:</strong> Galatasaray, Trabzonspor</p>
+        <p class="value"><strong>Değeri:</strong> €<span id="player-value">8.2</span>M <span id="value-indicator"></span></p>
 
         <h3>Kazandığı Kupalar:</h3>
-        <ul>
-            <li>Fransa Ligue 1 - 1 kez</li>
-            <li>Fransa Kupası - 1 kez</li>
-        </ul>
+        <div class="achievements">
+        <div class="achievement-item">
+            <strong>1x U21 Avrupa Şampiyonası</strong><br>
+            2021 - Almanya U21
+        </div>
     </div>
+</div>
     <a href="C:\Users\Windows10\Desktop\site\index.html" class="back-link">← Ana Sayfaya Dön</a>
+
+    <script>
+        // Başlangıç değeri (gerekirse bu değeri değiştirin)
+        let currentValue = 8.0;
+
+        function updateValue(newValue) {
+            const valueElement = document.getElementById("player-value");
+            const indicatorElement = document.getElementById("value-indicator");
+
+            // Değerin arttı mı azaldı mı olduğunu belirleyin
+            if (newValue > currentValue) {
+                indicatorElement.textContent = "↑"; // Yukarı ok
+                indicatorElement.className = "indicator-up"; // Yeşil renk
+            } else if (newValue < currentValue) {
+                indicatorElement.textContent = "↓"; // Aşağı ok
+                indicatorElement.className = "indicator-down"; // Kırmızı renk
+            } else {
+                indicatorElement.textContent = ""; // Değişiklik yok
+            }
+
+            // Görüntülenen değeri güncelleyin
+            valueElement.textContent = newValue.toFixed(2);
+
+            // currentValue'yu yeni değere ayarlayın
+            currentValue = newValue;
+        }
+
+        // Örnek kullanım
+        // Farklı değerlerle updateValue'u çağırarak etkiyi test edebilirsiniz
+        updateValue(8.2); // Azalma örneği
+    </script>
 </body>
 </html>
