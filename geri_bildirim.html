@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geri Bildirim Formu</title>
+    <style>
+        body {
+            background-color: #1a1a1a;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        input[type="text"], textarea {
+            width: 80%;
+            max-width: 600px;
+            margin: 10px auto;
+            display: block;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #444;
+            background-color: #333;
+            color: white;
+        }
+        .submit-button {
+            background-color: #ffcc00;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            color: #1a1a1a;
+            font-weight: bold;
+            display: block;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Aktif Değil</h1>
+    <form id="feedbackForm">
+        <label for="playerName">Futbolcu Adı:</label>
+        <input type="text" id="playerName" name="playerName" required>
+        
+        <label for="errorDescription">Hata Açıklaması:</label>
+        <textarea id="errorDescription" name="errorDescription" required></textarea>
+        
+        <button type="submit" class="submit-button">Gönder</button>
+    </form>
+
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script>
+        (function() {
+            emailjs.init("8Tr4jhVSnzNcV3EVK"); // Buraya doğru kullanıcı kimliğinizi yazın
+        })();
+
+        document.getElementById('feedbackForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const playerName = document.getElementById('playerName').value;
+            const errorDescription = document.getElementById('errorDescription').value;
+
+            const templateParams = {
+                playerName: playerName,
+                errorDescription: errorDescription
+            };
+
+            emailjs.send('service_fftpurl', 'template_p33kcju', templateParams) // Buraya doğru servis ve şablon kimliklerinizi yazın
+                .then(function(response) {
+                    console.log('Başarıyla gönderildi!', response.status, response.text);
+                    alert('Geri bildirim gönderildi!');
+                }, function(error) {
+                    console.log('Hata oluştu!', error);
+                    alert('E-posta gönderirken bir hata oluştu.');
+                });
+        });
+    </script>
+</body>
+</html>

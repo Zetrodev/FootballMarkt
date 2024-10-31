@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ciro Immobile - Detaylar</title>
+    <title>Yunus Akgün - Detaylar</title>
     <style>
         body {
             background-color: #1a1a1a;
@@ -30,7 +30,7 @@
             display: block;
             margin-top: 20px;
             text-align: center;
-            color: #ffcc00;
+            color: #fff;
             text-decoration: none;
         }
 
@@ -48,24 +48,61 @@
             color: red;
             margin-left: 10px;
         }
+
+        .achievements {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #444;
+            border-radius: 8px;
+        }
+
+        .achievement-item {
+            margin: 5px 0;
+        }
     </style>
 </head>
 <body>
-    <h1>Ciro Immobile</h1>
+    <h1>Yunus Akgün</h1>
     <div class="details">
-        <p><strong>Yaş:</strong> 34</p>
-        <p><strong>Ülke:</strong> İtalya</p>
-        <p><strong>Pozisyon:</strong> Santrafor</p>
+        <p><strong>Yaş:</strong> 24</p>
+        <p><strong>Ülke:</strong> Türkiye</p>
+        <p><strong>Pozisyon:</strong> Sağ Kanat</p>
         <p><strong>Ayak:</strong> Sağ</p>
-        <p><strong>Güncel Takım:</strong> Beşiktaş</p>
-        <p><strong>Geçmiş Takımlar:</strong> Lazio, Torino, Sevilla, Borussia Dortmund</p>
-        <p class="value"><strong>Değeri:</strong> €<span id="value">3.80</span>M <span id="value-arrow"></span></p>
+        <p><strong>Güncel Takım:</strong> Galatasaray </p>
+        <p><strong>Geçmiş Takımlar:</strong> Adanaspor, Kasımpaşa</p>
+        <p class="value"><strong>Değeri:</strong> €<span id="value">6.5</span>M <span id="value-arrow"></span></p>
+        
+        <h3>Kazandığı Kupalar:</h3>
+        <div class="achievements">
+            <div class="achievement-item">
+                <strong>3x Süper Lig</strong><br>
+                22/23 - Galatasaray<br>
+                18/19 - Galatasaray<br>
+                17/18 - Galatasaray
+            </div>
+            <div class="achievement-item">
+                <strong>1x Türkiye Kupası</strong><br>
+                18/19 - Galatasaray
+            </div>
+            <div class="achievement-item">
+                <strong>1x TFF 1.Lig</strong><br>
+                20/21 - Adana Demirspor
+            </div>
+            <div class="achievement-item">
+                <strong>1x Türkiye Süper Kupası</strong><br>
+                19/20 - Galatasaray
+            </div>
+            <div class="achievement-item">
+                <strong>1x İngiltere Championship</strong><br>
+                23/24 - Leicester City
+            </div>
+        </div>
     </div>
-    <a href="https://zetrodev.github.io/FootballMarkt/" class="back-link">← Oyuncu Listesine Dön</a>
+    <a href="https://zetrodev.github.io/FootballMarkt/" class="back-link">← Ana Sayfaya Dön</a>
 
     <script>
         // İlk değeri tanımla
-        let previousValue = 3.80; // Eski değeri buraya girin
+        let previousValue = 6.5; // Eski değeri buraya girin
         const valueElement = document.getElementById('value');
         const valueArrow = document.getElementById('value-arrow');
 
@@ -90,7 +127,7 @@
         }
 
         // Burada değeri değiştirdiğinizde ok işareti otomatik güncellenir
-        updateValue(4.50); // Yeni değeri buraya girin
+        updateValue(7.0); // Yeni değeri buraya girin
     </script>
 </body>
 </html>

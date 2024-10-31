@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ciro Immobile - Detaylar</title>
+    <title>Yusuf Demir - Detaylar</title>
     <style>
         body {
             background-color: #1a1a1a;
@@ -30,7 +30,7 @@
             display: block;
             margin-top: 20px;
             text-align: center;
-            color: #ffcc00;
+            color: #fff;
             text-decoration: none;
         }
 
@@ -48,24 +48,43 @@
             color: red;
             margin-left: 10px;
         }
+
+        .achievements {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #444;
+            border-radius: 8px;
+        }
+
+        .achievement-item {
+            margin: 5px 0;
+        }
     </style>
 </head>
 <body>
-    <h1>Ciro Immobile</h1>
+    <h1>Yusuf Demir</h1>
     <div class="details">
-        <p><strong>Yaş:</strong> 34</p>
-        <p><strong>Ülke:</strong> İtalya</p>
-        <p><strong>Pozisyon:</strong> Santrafor</p>
+        <p><strong>Yaş:</strong> 21</p>
+        <p><strong>Ülke:</strong> Avusturya</p>
+        <p><strong>Pozisyon:</strong> Sağ Kanat</p>
         <p><strong>Ayak:</strong> Sağ</p>
-        <p><strong>Güncel Takım:</strong> Beşiktaş</p>
-        <p><strong>Geçmiş Takımlar:</strong> Lazio, Torino, Sevilla, Borussia Dortmund</p>
-        <p class="value"><strong>Değeri:</strong> €<span id="value">3.80</span>M <span id="value-arrow"></span></p>
+        <p><strong>Güncel Takım:</strong> Galatasaray</p>
+        <p><strong>Geçmiş Takımlar:</strong> Rapid Wien U18, Rapid Wien U16, Rapid Wien U15, Rapid Wien Alt.,Rapid Wien, Barcelona, Galatasaray, Basel</p>
+        <p class="value"><strong>Değeri:</strong> €<span id="value">1.5</span>M <span id="value-arrow"></span></p>
+        
+        <h3>Kazandığı Kupalar:</h3>
+        <div class="achievements">
+            <div class="achievement-item">
+                <strong>1x Süper Lig</strong><br>
+                22/23 - Galatasaray
+            </div>
+        </div>
     </div>
-    <a href="https://zetrodev.github.io/FootballMarkt/" class="back-link">← Oyuncu Listesine Dön</a>
+    <a href="https://zetrodev.github.io/FootballMarkt/" class="back-link">← Ana Sayfaya Dön</a>
 
     <script>
         // İlk değeri tanımla
-        let previousValue = 3.80; // Eski değeri buraya girin
+        let previousValue = 2.5; // Eski değeri buraya girin
         const valueElement = document.getElementById('value');
         const valueArrow = document.getElementById('value-arrow');
 
@@ -90,7 +109,7 @@
         }
 
         // Burada değeri değiştirdiğinizde ok işareti otomatik güncellenir
-        updateValue(4.50); // Yeni değeri buraya girin
+        updateValue(1.5); // Yeni değeri buraya girin
     </script>
 </body>
 </html>
