@@ -95,13 +95,13 @@
     { name: 'Berkan Kutlu', team: 'Galatasaray', position: 'Merkez Orta Saha', value: 3.80 },
     { name: 'Eyüp Aydın', team: 'Galatasaray', position: 'Merkez Orta Saha', value: 1.10 },
     { name: 'Gökdeniz Gürpüz', team: 'Galatasaray', position: 'Merkez Orta Saha', value: 0.30 },
-    { name: 'Barış Alper Yılmaz', team: 'Galatasaray', position: 'Sağ Kanat', value: 21.00 },
-    { name: 'Roland Sallai', team: 'Galatasaray', position: 'Sağ Kanat', value: 14.00 },
+    { name: 'Barış Alper Yılmaz', team: 'Galatasaray', position: 'Sağ Kanat', value: 20.5 },
+    { name: 'Roland Sallai', team: 'Galatasaray', position: 'Sağ Kanat', value: 12.00 },
     { name: 'Hakim Ziyech', team: 'Galatasaray', position: 'Sağ Kanat', value: 7.00 },
     { name: 'Yunus Akgün', team: 'Galatasaray', position: 'Sağ Kanat', value: 6.50 },
     { name: 'Yusuf Demir', team: 'Galatasaray', position: 'Sağ Kanat', value: 2.50 },
-    { name: 'Dries Mertens', team: 'Galatasaray', position: 'Forvet Arkası', value: 1.80 },
-    { name: 'Michy Batshuayi', team: 'Galatasaray', position: 'Santrafor', value: 8.00 },
+    { name: 'Dries Mertens', team: 'Galatasaray', position: 'Forvet Arkası', value: 1.8 },
+    { name: 'Michy Batshuayi', team: 'Galatasaray', position: 'Santrafor', value: 7.5 },
 
     // Beşiktaşlı oyuncular
     { name: 'Ersin Destanoğlu', team: 'Beşiktaş', position: 'Kaleci', value: 2.00 },
@@ -143,8 +143,9 @@ function renderTable(filteredPlayers) {
     tableBody.innerHTML = '';
 
     (filteredPlayers || players).forEach(player => {
-        const teamName = player.team.toLowerCase().replace(' ', '_'); // Takım ismini uygun formatta al
-        const playerLink = `${teamName}/${player.name.toLowerCase().replace(' ', '_')}.html`; // Takım ve oyuncu bağlantısını oluştur
+        const teamName = player.team.toLowerCase().replace(/ /g, '_'); // Takım ismini uygun formatta al
+        const playerName = player.name.toLowerCase().replace(/ /g, '_'); // Oyuncu ismini uygun formatta al
+        const playerLink = `${teamName}/${playerName}.html`; // Takım ve oyuncu bağlantısını oluştur
         const teamLink = `${teamName}/${teamName}.html`; // Takım bağlantısını oluştur
 
         const row = document.createElement('tr');
@@ -157,6 +158,7 @@ function renderTable(filteredPlayers) {
         tableBody.appendChild(row);
     });
 }
+
 
 
 

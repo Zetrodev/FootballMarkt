@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Michy Batshuayi - Detaylar</title>
+    <style>
+        body {
+            background-color: #1a1a1a;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .details {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #333;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .value {
+            font-size: 18px;
+        }
+
+        .back-link {
+            display: block;
+            margin-top: 20px;
+            text-align: center;
+            color: #ffcc00;
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            color: #fff;
+        }
+
+        .indicator-up {
+            color: #00ff00; /* Yeşil artış için */
+        }
+
+        .indicator-down {
+            color: #ff0000; /* Kırmızı azalış için */
+        }
+        .achievements {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #444;
+            border-radius: 8px;
+        }
+
+        .achievement-item {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Michy Batshuayi</h1>
+    <div class="details">
+        <p><strong>Yaş:</strong> 30</p>
+        <p><strong>Ülke:</strong> Belçika</p>
+        <p><strong>Pozisyon:</strong> Forvet</p>
+        <p><strong>Ayak:</strong> Sağ</p>
+        <p><strong>Güncel Takım:</strong> Beşiktaş</p>
+        <p><strong>Geçmiş Takımlar:</strong> Chelsea, Borussia Dortmund</p>
+        <p class="value"><strong>Değeri:</strong> €<span id="player-value">7.5</span>M <span id="value-indicator"></span></p>
+
+        <h3>Kazandığı Kupalar:</h3>
+        <div class="achievements">
+            <div class="achievement-item">
+                <strong>3x Gol Kralı</strong><br>
+                23/24 - Türkiye Kupası - Türkiye Kupası - 6 Gol<br>
+                22/23 - UEFA Uluslar Ligi A - UEFA Uluslar Ligi A - 3 Gol<br>
+                22/23 - Türkiye Kupası - Türkiye Kupası - 5 Gol
+            </div>
+            <div class="achievement-item">
+                <strong>1x İngiltere Premier League</strong><br>
+                16/17 - Chelsea FC - Chelsea FC
+            </div>
+            <div class="achievement-item">
+                <strong>1x İngiltere Kupası</strong><br>
+                2018 - Chelsea FC - Chelsea FC
+            </div>
+            <div class="achievement-item">
+                <strong>1x İspanya Kupası</strong><br>
+                18/19 - FC Valencia - FC Valencia
+            </div>
+            <div class="achievement-item">
+                <strong>1x Türkiye Kupası</strong><br>
+                22/23 - Fenerbahçe - Fenerbahçe
+            </div>
+            <div class="achievement-item">
+                <strong>1x Türkiye Süper Kupası</strong><br>
+                21/22 - Beşiktaş JK - Beşiktaş JK
+            </div>
+        </div>
+    </div>
+    <a href="C:\Users\Windows10\Desktop\site\index.html" class="back-link">← Ana Sayfaya Dön</a>
+
+    <script>
+        // Başlangıç değeri (gerekirse bu değeri değiştirin)
+        let currentValue = 8.0;
+
+        function updateValue(newValue) {
+            const valueElement = document.getElementById("player-value");
+            const indicatorElement = document.getElementById("value-indicator");
+
+            // Değerin arttı mı azaldı mı olduğunu belirleyin
+            if (newValue > currentValue) {
+                indicatorElement.textContent = "↑"; // Yukarı ok
+                indicatorElement.className = "indicator-up"; // Yeşil renk
+            } else if (newValue < currentValue) {
+                indicatorElement.textContent = "↓"; // Aşağı ok
+                indicatorElement.className = "indicator-down"; // Kırmızı renk
+            } else {
+                indicatorElement.textContent = ""; // Değişiklik yok
+            }
+
+            // Görüntülenen değeri güncelleyin
+            valueElement.textContent = newValue.toFixed(2);
+
+            // currentValue'yu yeni değere ayarlayın
+            currentValue = newValue;
+        }
+
+        // Örnek kullanım
+        updateValue(7.5); // Artış örneği
+    </script>
+</body>
+</html>
